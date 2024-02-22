@@ -1,0 +1,33 @@
+name: Daily Auto 5988 ADU888
+
+on:
+  schedule:
+    - cron: "58 */1 * * *"
+  push:
+    branches:
+    - main  # 
+
+jobs:
+  update-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Auto Update
+        run: |
+          git config --local user.email "adu0928@163.com"  # 
+          git config --local user.name "adu0928"  # 
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git pull --rebase
+          git commit --allow-empty -m "If I could， I surely would。
+May there be enough clouds in your life to make a beautiful sunset。
+The worst way to miss someone is to be sitting right beside them knowing you can’t have them。
+No pains， no gains。
+Life is like a box of chocolates， you never know what you are going to get。
+ You must always have faith in who you are！
+The longest day has an end。
+Don‘t cry because it is over， smile because it happened。
+ When you feel like hope is gone， look inside you and search your soul。 you will find a hero lies in you。 dreams are hard to follow， but don‘t let anyone steal your dream。
+To be， or not to be - that is the question"  # 
+          git push
